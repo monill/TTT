@@ -81,7 +81,7 @@ class Signup extends Controller
                     $newactv->created_at = $date;
                     $newactv->save();
 
-                    Log::novo($uid, "A new member registered an new account: {$user}");
+                    Log::novo($uid, "A new member register an new account: {$user}");
 
                     $this->mailer->confirmEmail($mail, $uid, $key);
 
