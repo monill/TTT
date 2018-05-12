@@ -1,0 +1,38 @@
+{% extends 'layout/main.twig' %}
+
+{% block title %} Report Torrent {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <b>Are you sure you would like to report the following forum post:</b><br />
+
+                    <a class="text-info" href="{{ url }}/forum/topic/{{ topic.id }}" target="_blank"> <b>{{ topic.name }}</b></a>?
+                    <hr>
+
+                    <b> Reason </b> (required):
+
+                    <form method="post" action="{{ url }}/report/topic/{{ topic.id }}" autocomplete="off">
+                        <input type="hidden" name="token" value="{{ token }}">
+
+                        <div class="form-group">
+                            <label for="reason"></label>
+                            <div class="col-md-6">
+                                <input id="reason" type="text" class="form-control" name="reason" placeholder="Be sort..." maxlength="240">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-5 col-lg-10">
+                                <button type="submit" class="btn btn-danger">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

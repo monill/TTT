@@ -1,0 +1,57 @@
+{% extends 'layout/main.twig' %}
+
+{% block title %} Admin Control Panel - Privacy Levels {% endblock %}
+
+{% block content %}
+
+    {% include 'dashboard/menu.twig' %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-title text-center">
+                    <h4 class="text-info">Privacy Levels</h4>
+                </div>
+                <div class="card-body">
+
+                    <p class="text-center"> This page displays all users which are enabled, confirmed grouped by their privacy level.</p>
+
+                    <form action="{{ url }}/admin/privacylevels" method="post" autocomplete="off">
+                        <input type="hidden" name="token" value="{{ token }}">
+
+                        <label for="privacy">Privacy Level:</label>
+                        <select id="privacy" name="privacy" onchange="this.form.submit()">
+                            <option selected disabled>Select Level</option>
+                            <option value="public">Public</option>
+                            <option value="friends">Friends</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </form>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Username: </th>
+                                <th scope="col"> Class: </th>
+                                <th scope="col"> E-mail: </th>
+                                <th scope="col"> Added: </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <th> <a href="{{ url }}/user/id/{{ user.id }}" class="text-info"> {{ user.username }} </a> </th>
+                                <td> {{ user.class|capitalize }} </td>
+                                <td> {{ user.email }} </td>
+                                <td> {{ user.created_at|date('d-m-Y') }} </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

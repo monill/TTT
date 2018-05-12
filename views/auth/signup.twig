@@ -1,0 +1,94 @@
+{% extends 'layout/auth.twig' %}
+
+{% block title %} Signup {% endblock %}
+
+{% block css %}
+    <link href="{{ baseUrl }}/vendors/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <div class="login-content card">
+                        <div class="login-form">
+                            <h4>Register</h4>
+                            <form action="{{ url }}/signup" method="post" autocomplete="off">
+                                <input type="hidden" name="token" value="{{ token }}">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input id="username" type="text" class="form-control" name="username" minlength="3" maxlength="25" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input id="password" type="password" class="form-control" name="password" minlength="6" maxlength="16" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password2">Repeat password</label>
+                                    <input id="password2" type="password" class="form-control" name="password2" minlength="6" maxlength="16" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control" name="email" maxlength="130" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">Bithday</label>
+                                    <input id="dob" type="text" class="form-control" name="dob">
+                                </div>
+                                <div class="form-group">
+                                    <label for="country"> Country </label>
+                                    <select id="country" class="form-control" name="country">
+                                        <option selected disabled> Select your country </option>
+                                        {% for country in countries %}
+                                            <option value="{{ country.id }}">{{ country.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender"> Gender </label>
+                                    <select id="gender" class="form-control" name="gender">
+                                        <option value="na">N/A</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                    </select>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="accept"> I agree to the <a href="#"> Terms of Service </a> and <a href="#"> Privacy Policy </a>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+                                <div class="register-link m-t-15 text-center">
+                                    <p>Already have account ? <a href="{{ url }}/login">Login</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        Copyright &copy; {{ "now"|date("Y") }} - TTMOD
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="{{ baseUrl }}/vendors/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $( function() {
+            $( "#dob" ).datepicker({
+                dateFormat: "mm-dd-yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1930:{{ "now"|date('Y') }}"
+            });
+        } );
+    </script>
+
+{% endblock %}

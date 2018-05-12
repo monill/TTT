@@ -1,0 +1,6 @@
+<?php
+
+//LOGIN CONFIGURATION
+define('LOGIN_MAX_LOGIN_ATTEMPTS', 5);
+define('LOGIN_FINGERPRINT', false);
+define('LOGIN_POINTS', 10);

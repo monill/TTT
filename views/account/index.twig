@@ -1,0 +1,331 @@
+{% extends 'layout/main.twig' %}
+
+{% block title %} My Account {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-two">
+                        <header>
+                            <div class="avatar">
+                                <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Allison Walker"/>
+                            </div>
+                        </header>
+
+                        <h3>{{ user.username }}</h3>
+                        <div class="desc">
+                            {{ user.info }}
+                        </div>
+                        <div class="contacts">
+                            <a href="">
+                                <i class="fa fa-plus" title="Add as friend"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-glus"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-lg-12">
+            <div class="card">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs profile-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#password" role="tab">Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#social" role="tab">Social</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#mytorrents" role="tab">My Torrents</a>
+                    </li>
+
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!--primary tab-->
+                    <div class="tab-pane active" id="profile" role="tabpanel">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>Username</strong>
+                                    <br>
+                                    <p class="text-muted">{{ user.username }}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>Mobile</strong>
+                                    <br>
+                                    <p class="text-muted">(123) 456 7890</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6 b-r">
+                                    <strong>Email</strong>
+                                    <br>
+                                    <p class="text-muted">{{ user.email }}</p>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <strong>Location</strong>
+                                    <br>
+                                    <p class="text-muted">London</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="m-t-30">Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper
+                                nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                It has survived not only five centuries
+                            </p>
+                            <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+
+                        </div>
+                    </div>
+                    <!-- Settings -->
+                    <div class="tab-pane" id="settings" role="tabpanel">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material" action="{{ url }}/account/updateaccount" method="post">
+                                <input type="hidden" name="token" value="{{ token }}">
+
+                                <div class="form-group">
+                                    <label for="info" class="col-md-12">Info</label>
+                                    <div class="col-md-12">
+                                        <input id="info" name="info" class="form-control" maxlength="240">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Accept PMs</label>
+                                    <div class="col-md-12">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="acceptpms" value="yes" checked> From All
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="acceptpms" value="no"> From friends only
+                                            </label>
+                                            <p class="small">Determines what users can send you private messages.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Profile</label>
+                                    <div class="col-md-12">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="privacy" value="private"> Private
+                                            </label>
+
+                                            <label>
+                                                <input type="radio" name="privacy" value="friends"> Friends
+                                            </label>
+
+                                            <label>
+                                                <input type="radio" name="privacy" value="public" checked> Public
+                                            </label>
+                                            <p class="small">Determines where your username and details are displayed.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="avatar" class="col-md-12">Avatar</label>
+                                    <div class="col-md-12">
+                                        <input id="avatar" type="text" class="form-control" name="avatar" value="">
+                                        <p class="small">The width should be 200px-300px (will be resized if necessary). <br>
+                                        If you need a HOST for the image, use the: <a class="text-success" href="https://imgur.com/" target="_blank">ImgUr</a>.</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title" class="col-md-12">Title</label>
+                                    <div class="col-md-12">
+                                        <input id="title" type="text" class="form-control" name="title" maxlength="240" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="signature" class="col-md-12">Signature</label>
+                                    <div class="col-md-12">
+                                        <input id="signature" type="text" class="form-control" name="signature" maxlength="240" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="country" class="col-sm-12">Select Country</label>
+                                    <div class="col-sm-12">
+                                        <select id="country" name="country" class="form-control form-control-line">
+                                            <option>London</option>
+                                            <option>India</option>
+                                            <option>Usa</option>
+                                            <option>Canada</option>
+                                            <option>Thailand</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gender" class="col-sm-12">Gender</label>
+                                    <div class="col-sm-12">
+                                        <select id="gender" name="gender" class="form-control form-control-line">
+                                            <option value="na">N/A</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Update Profile</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="tab-pane" id="password" role="tabpanel">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material" action="{{ url }}/account/updatepass" method="post">
+                                <input type="hidden" name="token" value="{{ token }}">
+                                <div class="form-group">
+                                    <label for="passwd" class="col-md-12">Password</label>
+                                    <div class="col-md-12">
+                                        <input id="passwd" type="password" minlength="6" maxlength="16" name="passwd" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwd2" class="col-md-12">Repeat password</label>
+                                    <div class="col-md-12">
+                                        <input id="passwd2" type="password" minlength="6" maxlength="16" name="passwd2" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Update Password</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Social -->
+                    <div class="tab-pane" id="social" role="tabpanel">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material" action="{{ url }}/account/updatesocial" method="post">
+                                <input type="hidden" name="token" value="{{ token }}">
+                                <div class="form-group">
+                                    <label for="facebook" class="col-md-12">Facebook</label>
+                                    <div class="col-md-12">
+                                        <input id="facebook" type="text" placeholder="Facebook" name="facebook" value="" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="twitter" class="col-md-12">Twitter</label>
+                                    <div class="col-md-12">
+                                        <input id="twitter" type="text" placeholder="Twitter" name="twitter" value="" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gplus" class="col-md-12">Google Plus</label>
+                                    <div class="col-md-12">
+                                        <input id="gplus" type="text" placeholder="Google Plus" name="gplus" value="" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="linkedin" class="col-md-12">Linkedin</label>
+                                    <div class="col-md-12">
+                                        <input id="linkedin" type="text" placeholder="Linkedin" name="linkedin" value="" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="instagram" class="col-md-12">Instagram</label>
+                                    <div class="col-md-12">
+                                        <input id="instagram" type="text" placeholder="Instagram" name="instagram" value="" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pinterest" class="col-md-12">Pinterest</label>
+                                    <div class="col-md-12">
+                                        <input id="pinterest" type="text" placeholder="Pinterest" name="pinterest" value="" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Update Social</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- MyTorrents -->
+                    <div class="tab-pane" id="mytorrents" role="tabpanel">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col"> Category </th>
+                                    <th scope="col"> Name </th>
+                                    <th scope="col"> Comments </th>
+                                    <th scope="col"> Downs </th>
+                                    <th scope="col"> Seeds </th>
+                                    <th scope="col"> Leechers </th>
+                                    <th scope="col"> Completed </th>
+                                    <th scope="col"> Added </th>
+                                    <th scope="col"> Edit </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+                                    <th> <?= $mytor->catname; ?> </th>
+                                    <td> <?= htmlspecialchars(substr($mytor->name, 0, 30)) . "..."; ?> </td>
+                                    <td> <?= $mytor->comments; ?> </td>
+                                    <td> <?= $mytor->downs; ?> </td>
+                                    <td> <?= $mytor->seeders; ?> </td>
+                                    <td> <?= $mytor->leechers; ?> </td>
+                                    <td> <?= $mytor->times_completed; ?> </td>
+                                    <td> <?= date("d-m-Y", strtotime($mytor->created_at)); ?> </td>
+                                    <td> <a href=""> Edit </a> </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+
+{% endblock %}

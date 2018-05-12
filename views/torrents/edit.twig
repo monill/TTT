@@ -1,0 +1,168 @@
+{% extends 'layout/main.twig' %}
+
+{% block title %} Edit Torrent {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card-header">
+                Visible
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    Note that the torrent will automatically become visible when there's a seeder, and will become
+                    automatically invisible (dead) when there has been no seeder for a while. Use this switch to speed
+                    the process up manually. Also note that invisible (dead) torrents can still be viewed or
+                    searched for, it's just not the default. <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form class="form-horizontal" enctype="multipart/form-data" action="{{ url }}/torrent/update" method="post" autocomplete="off">
+                        <input type="hidden" name="token" value="{{ token }}">
+                        <input type="hidden" name="tid" value="{{ torrent.id }}">
+
+                        <div class="form-group">
+                            <label for="torrentfile">Torrent file:</label>
+                            <div class="col-md-5">
+                                <input id="torrentfile" type="file" class="form-control-file" name="torrent" value="" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nfofile">NFO file:</label>
+                            <div class="col-md-5">
+                                <input id="nfofile" type="file" class="form-control-file" name="nfo" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Torrent name:</label>
+                            <div class="col-md-5">
+                                <input id="name" type="text" class="form-control" name="name" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="poster"> Poster: </label>
+                            <div class="col-md-5">
+                                <input id="poster" type="text" class="form-control" name="poster" maxlength="240" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image1"> Image 1:</label>
+                            <div class="col-md-5">
+                                <input id="image1" type="text" class="form-control" name="image1" maxlength="240" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image2"> Image 2:</label>
+                            <div class="col-md-5">
+                                <input id="image2" type="text" class="form-control" name="image2" maxlength="240" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image3"> Image 3:</label>
+                            <div class="col-md-5">
+                                <input id="image3" type="text" class="form-control" name="image3" maxlength="240" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2" for="category">Categories:</label>
+                            <div class="col-md-3">
+                                <select name="category" id="category" class="form-control" required>
+                                    <option selected disabled="disabled">Select a category</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name|e }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="showuploader" class="col-lg-4 col-sm-4 custom-control"> Annonymous Upload? </label>
+                            <div class="col-md-8">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="showuploader" id="yes" value="yes">
+                                    <label class="form-check-label" for="yes"> Yes </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="showuploader" id="no" value="no" checked>
+                                    <label class="form-check-label" for="no"> No </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2" for="ban"> Ban?: </label>
+                            <div class="col-md-6">
+                                <input id="ban" type="checkbox" name="ban" value="yes"> Yes
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2" for="freeleech"> Freeleech?: </label>
+                            <div class="col-md-6">
+                                <input id="freeleech" type="checkbox" name="freeleech" value="yes"> Yes
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2" for="description"> Description: </label>
+                            <div class="col-md-6">
+                                <textarea id="description" class="form-control" name="description" rows="4" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-5 col-lg-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Delete .torrent
+        </div>
+        <div class="card-body">
+        <!-- content -->
+            <form class="form-horizontal" enctype="multipart/form-data" action="{{ url }}/torrent/update" method="post" autocomplete="off">
+                <input type="hidden" name="token" value="{{ token }}">
+                <input type="hidden" name="tid" value="{{ torrent.id }}">
+
+                <div class="form-group">
+                    <label for="delreason"></label>
+                    <div class="col-md-5">
+                        <input id="delreason" type="text" class="form-control" name="delreason" placeholder="Reason for deletion, be sort..." maxlength="240">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-5 col-lg-10">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                </div>
+            </form>
+        <!-- end content -->
+        </div>
+    </div>
+    <br />
+
+
+{% endblock %}

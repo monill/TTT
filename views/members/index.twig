@@ -1,0 +1,96 @@
+{% extends 'layout/main.twig' %}
+
+{% block title %} Members {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Members</h4>
+                </div>
+                <div class="card-body">
+                    <div class="basic-elements">
+                        <form method="post" action="/members/search" autocomplete="off">
+                        <input type="hidden" name="token" value="{{ token }}" />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="user">Username</label>
+                                    <input id="user" type="text" class="form-control" name="user" minlength="3" maxlength="25" placeholder="Search.." autofocus />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="class"> Class </label>
+                                    <select id="class" class="form-control" name="class">
+                                        <option selected disabled> Any Class </option>
+                                        <option value="member">Member</option>
+                                        <option value="memberplus">Member Plus</option>
+                                        <option value="vip">VIP</option>
+                                        <option value="uploader">Uploader</option>
+                                        <option value="moderator">Moderator</option>
+                                        <option value="moderatorplus">Moderator Plus</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group m-b-0">
+                                <div class="offset-sm-3 col-sm-9">
+                                    <button type="submit" class="btn btn-info waves-effect waves-light">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Members</h4>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <p class="text-center">
+                            <a href="{{ url }}/members"> <b> ALL </b> </a>
+                            {% for l in 'a'..'z' %}
+                                - <a href="{{ url }}/members/letter/{{ l }}"><b>{{ l|upper }}</b> </a>
+                            {% endfor %}
+                        </p>
+                        <br />
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Member since</th>
+                                <th>Class</th>
+                                <th>Estate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for member in members %}
+                                <tr>
+                                    <th> <a href="{{ url }}/user/view/{{ member.id }}">{{ member.username }}</a> </th>
+                                    <td> {{ member.profile().first().created_at|date("d-m-Y") }} </td>
+                                    <td> {{ member.class }} </td>
+                                    <td>
+                                        <img src="{{ baseUrl }}/images/estates/{{ member.profile().first().estate_id }}.png" class="estates" alt="Estate" />
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

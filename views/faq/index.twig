@@ -1,0 +1,36 @@
+{% extends 'layout/main.twig' %}
+
+{% block title %} F.A.Q {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12">
+            {% for categ in categs %}
+            <div class="card">
+                <div class="card-header {{ categ.style }}">
+                    <b> {{ categ.name }} </b>
+                    <a data-toggle="collapse" href="#" class="showHide" id="categ-{{ categ.id }}" style="float: right;"></a>
+                </div>
+                <div class="card-body">
+                    {% for answer in answers %}
+                        {% if answer.category_id == categ.id %}
+                        <div class="card">
+                            <div class="card-header {{ answer.style }}">
+                                <b> {{ answer.question }} </b>
+                                <a data-toggle="collapse" href="#" class="showHide" id="answer-{{ answer.id }}" style="float: right;"></a>
+                            </div>
+                            <div class="card-body">
+                                {{ answer.answer|raw }}
+                            </div>
+                        </div>
+                        <br/>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
