@@ -441,9 +441,7 @@ CREATE TABLE `invites` (
 --
 
 INSERT INTO `invites` (`id`, `email`, `hash`, `expires_on`, `invited_by`, `accepted_by`, `accepted_at`, `created_at`, `updated_at`) VALUES
-(7, 'jo@hotmail.com', '73c33481de32ba6e62187c6a9958e31e', '2018-05-11', 3, NULL, NULL, '2018-05-04 02:01:48', '2018-05-04 02:01:48'),
-(8, 'juaorok@hotmail.com', 'e6869411fe0646213b97e80368e6ad91', '2018-05-11', 3, NULL, NULL, '2018-05-04 02:03:34', '2018-05-04 02:03:34'),
-(9, 'juaorok@hotmail.com', '1a228d611cabc68f17ef710abf1ac5c9', '2018-05-11', 3, NULL, NULL, '2018-05-04 02:05:04', '2018-05-04 02:05:04');
+(7, 'jo@hotmail.com', '73c33481de32ba6e62187c6a9958e31e', '2018-05-11', 3, NULL, NULL, '2018-05-04 02:01:48', '2018-05-04 02:01:48');
 
 -- --------------------------------------------------------
 
@@ -476,9 +474,7 @@ INSERT INTO `logs` (`id`, `user_id`, `message`, `ip`, `browser`, `os_system`, `c
 (7, 0, 'User reported a user 1', '127.0.0.1', 'Opera', 'Windows 10', '2018-05-04 00:02:53', '2018-05-04 00:02:53'),
 (8, 0, 'User reported a user: 2', '127.0.0.1', 'Opera', 'Windows 10', '2018-05-04 00:05:47', '2018-05-04 00:05:47'),
 (9, 3, 'A member send a invite to email: dasd@dasdas.', '127.0.0.1', 'Opera', 'Windows 10', '2018-05-04 01:54:33', '2018-05-04 01:54:33'),
-(10, 3, 'A member send a invite to email: jo@hotmail.com.', '127.0.0.1', 'Opera', 'Windows 10', '2018-05-04 02:01:48', '2018-05-04 02:01:48'),
-(11, 3, 'A member send a invite to email: juaorok@hotmail.com.', '127.0.0.1', 'Opera', 'Windows 10', '2018-05-04 02:03:34', '2018-05-04 02:03:34'),
-(12, 3, 'A member send a invite to email: juaorok@hotmail.com.', '127.0.0.1', 'Opera', 'Windows 10', '2018-05-04 02:05:05', '2018-05-04 02:05:05');
+(10, 3, 'A member send a invite to email: jo@hotmail.com.', '127.0.0.1', 'Opera', 'Windows 10', '2018-05-04 02:01:48', '2018-05-04 02:01:48');
 
 -- --------------------------------------------------------
 
